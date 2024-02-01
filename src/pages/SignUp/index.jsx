@@ -4,6 +4,8 @@ import { Button }  from '../../components/Button'
 import { ButtonText } from '../../components/ButtonText'
 import { FiMail, FiLock, FiUser} from 'react-icons/fi'
 
+import { api } from "../../services/api"
+
 
 export function SignUp() {
     return (
