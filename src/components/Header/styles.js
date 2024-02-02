@@ -8,7 +8,6 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 
-
 height: 116px;
 padding: 0 123px;
 
@@ -33,20 +32,25 @@ color: ${({ theme }) => theme.COLORS.WHITE};
   display: flex;
   flex-direction: column;
   font-weight: 700;
-  margin-left: 64px;
-
-  > button {
-  background: none;
-  border: none;
-  text-align: right;
-  color: ${({ theme }) => theme.COLORS.GRAY_100};
-}
+  margin-left: 74px;
 }
 
 > img {
   width: 64px;
   border-radius: 35px;
-  
 }
 `
 
+export const Logout = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+
+> button {
+  font-size: 17px;
+  background: none;
+  border: none;
+  text-align: right;
+  color: ${({ theme }) => theme.COLORS.GRAY_100};
+}
+`
