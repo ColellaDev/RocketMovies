@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react"
+import {createContext, useContext, useState, useEffect} from "react"
 
 import { api } from "../services/api" //Importamos o banco
 
@@ -13,6 +13,9 @@ function AuthProvider({ children }) { // children será no caso as Rotas da apli
             const response = await api.post("/sessions", { email, password }) //Criamos a requisição
             const { user, token} = response.data // Desestruturar p/ pegar apenas as informações do usuário
 
+            localStorage.setItem("@rocketnotes:user", JSON.stringify(user))
+            localStorage.setItem("@rocketnotes:token", token)
+
             api.defaults.headers.common['Authorization'] = `Bearer ${token}` //aplicando o Token em todas as requisições q o usuário for fazer
             setData({ user, token}) // Amazenamos o usuario e token no data
 
@@ -24,9 +27,22 @@ function AuthProvider({ children }) { // children será no caso as Rotas da apli
             } else {
                 alert("Não foi possível entrar.")
             }
-        }
-        
+        }   
     } 
+
+    useEffect(() => {
+        const user = localStorage.getItem("@rocketnotes:user")
+        const token = localStorage.getItem("@rocketnotes:token")
+
+        if (token && user ) {
+            api.defaults.headers.authorization = `Bearer ${token}`
+
+            setData({ 
+                token,
+                user: JSON.parse(user)
+            })
+        }
+    }, [])
 
 // o user: data.user  esta armazenando o usuário logado e passando por contexto p/ aplicação
     return (
