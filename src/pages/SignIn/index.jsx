@@ -7,14 +7,19 @@ import { Link } from 'react-router-dom'
 
 import { useAuth } from "../../hooks/auth"
 
-
+import { useState } from "react"
 
 export function SignIn() {
 
-    const data = useAuth()
-    console.log("MEU CONTEXTO =>", data)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
+    const {signIn} = useAuth()
 
+    function handleSignIn() {
+        signIn({ email, password })
+      }
+    
     return (
         <Container>
             <Form>
@@ -25,12 +30,19 @@ export function SignIn() {
 
                 <Input 
                 placeholder="E-mail"
-                icon={FiMail}/>
+                type="text"
+                icon={FiMail}
+                onChange={e => setEmail(e.target.value)}
+                />
 
-                <Input placeholder="Senha"
-                icon={FiLock}/>
+                <Input 
+                placeholder="Senha"
+                type="password"
+                icon={FiLock}
+                onChange={e => setPassword(e.target.value)}
+                />
 
-                <Button title="Entrar"/>
+                <Button title="Entrar" onClick={handleSignIn}/>
                 
                 
                 <Link to = "/register">Criar conta</Link>
