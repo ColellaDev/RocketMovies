@@ -5,9 +5,16 @@ import { FiMail, FiLock} from 'react-icons/fi'
 
 import { Link } from 'react-router-dom'
 
+import { useAuth } from "../../hooks/auth"
+
 
 
 export function SignIn() {
+
+    const data = useAuth()
+    console.log("MEU CONTEXTO =>", data)
+
+
     return (
         <Container>
             <Form>
