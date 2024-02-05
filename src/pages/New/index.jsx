@@ -5,9 +5,23 @@ import { Input } from "../../components/Input"
 import { TextArea } from "../../components/TextArea"
 import { Button } from "../../components/Button"
 import { NoteItem } from "../../components/NoteItem"
+import { useState } from "react"
 
 
 export function New() {
+
+    const [ tags, setTags] = useState([])
+    const [ newTag, setNewTag] = useState("")
+
+    function handleAddTag(){
+        setTags( prevState => [...prevState, newTag] ) // Mantem oq tinha antes "prevState" e adiciona o newTag
+        setNewTag("") // "Resetar" o estado do NewTag, limpar ele
+      }
+
+      function handleDeleteTag(deleted) { //deleted recebe a Tag
+        setTags(prevState => prevState.filter((tag, index) => index !== deleted))
+    }
+
     return (
         <Container>
 
@@ -29,8 +43,24 @@ export function New() {
             <h2>Marcadores</h2>
 
             <div>
-              <NoteItem  value="React" />
-              <NoteItem isNew placeholder="Nova tag" />
+            {
+              tags.map((tag, index) => (
+                <NoteItem 
+                key={String(index)}
+                value={tag}
+                onClick={() => {handleDeleteTag(index)}}
+                /> 
+              ))
+            }
+
+              <NoteItem 
+              isNew 
+              placeholder="Nova tag" 
+              value = {newTag}
+              onChange = {e => setNewTag(e.target.value)}
+              onClick = {handleAddTag}
+              />
+
             </div>
             
 
