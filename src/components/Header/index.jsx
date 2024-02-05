@@ -2,13 +2,17 @@ import { Container, Profile, Logout } from "./styles";
 import { Input } from "../../components/Input"
 import { FiSearch} from 'react-icons/fi'
 import { useAuth } from "../../hooks/auth"
+import {api} from "../../services/api"
 
 
 
 
 export function Header() {
 
-    const { signOut } = useAuth()
+    const { signOut, user } = useAuth()
+
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
+
 
     return (
         <Container>
@@ -20,9 +24,9 @@ export function Header() {
             <Logout>
                 <Profile to="/profile">
                 <div>
-                 <span>Marcos Colella</span>
+                 <span>{user.name}</span>
                  </div>
-                 <img src="https://github.com/ColellaDev.png" alt="Foto do usuário"/>
+                 <img src={avatarUrl} alt="Foto do usuário"/>
                  </Profile>
 
                 <button type="button" onClick={signOut}>sair</button>
