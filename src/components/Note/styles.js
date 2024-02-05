@@ -7,6 +7,12 @@ background-color: ${({theme})=> theme.COLORS.PINK_5};
 margin-bottom: 30px;
 padding: 32px;
 border-radius: 20px;
+cursor: pointer;
+transition: filter 0.2s;
+
+&:hover {
+    filter: brightness(0.8);
+  }
 
 > h2 {
   margin-bottom: 8px;

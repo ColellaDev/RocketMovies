@@ -4,9 +4,9 @@ import { Tags } from "../Tags";
 
 
 
-export function Note( {data} ) {
+export function Note( {data, ...rest} ) {
   return (
-      <Container >
+      <Container {...rest}>
 
         <h2>{data.title}</h2>
         <StarRating rating ={data.rating} />

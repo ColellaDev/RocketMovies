@@ -2,6 +2,7 @@ import { Container, Content, PlusIcon, Title, Lista, LinkButton} from "./styles"
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { Note } from "../../components/Note";
+import { useNavigate  } from "react-router-dom"
 
 import { useState, useEffect } from "react"
 
@@ -12,6 +13,8 @@ export function Home() {
     const [notes, setNotes] = useState([])
     const [search, setSearch] = useState('')
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         async function fetchNotes() {
             const response = await api.get(`/movieNotes?title=${search}`)
@@ -19,6 +22,10 @@ export function Home() {
         }
         fetchNotes()
       }, [search])
+
+      function handleDetails(id) {
+        navigate(`/details/${id}`)
+      }
 
     return (
         <Container>
@@ -43,6 +50,7 @@ export function Home() {
             <Note 
              key={String(note.id)}
              data={note}
+             onClick={( ) => handleDetails(note.id)}
            />
           ))
         }
