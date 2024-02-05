@@ -45,6 +45,10 @@ export function Details() {
     }
   }
 
+  function handleBack() {
+    navigate(-1)
+  }
+
   return (
     <Container>
     <Header/>
@@ -54,7 +58,7 @@ export function Details() {
     <Content>
       
      <CustomButton>
-    <ButtonText to="/" title="Voltar"/>
+    <ButtonText title="Voltar" onClick={handleBack}/>
     <Button title="Excluir filme" onClick={handleRemove}/>
     </CustomButton> 
 

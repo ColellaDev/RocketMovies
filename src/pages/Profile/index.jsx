@@ -1,4 +1,4 @@
-import  { Container, Form, Avatar} from  "./styles"
+import {Container, Form, Avatar} from  "./styles"
 import { ButtonText } from "../../components/ButtonText"
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
@@ -45,7 +45,7 @@ export function Profile() {
     return (
         <Container>
             <header>
-            <ButtonText to="/" title="Voltar"/>
+            <ButtonText to="/"title="Voltar"/>
             </header>
 
             <Form>

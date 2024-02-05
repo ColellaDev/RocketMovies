@@ -1,4 +1,4 @@
-import { Container, Content, CustomButton, CustomTitle } from "./styles"
+import { Container, Content, CustomTitle } from "./styles"
 import { Header } from "../../components/Header"
 import {ButtonText } from "../../components/ButtonText"
 import { Input } from "../../components/Input"
@@ -52,6 +52,10 @@ export function New() {
         navigate("/")
      }
 
+     function handleBack() {
+      navigate(-1)
+    }
+
     return (
         <Container>
 
@@ -59,7 +63,7 @@ export function New() {
             
             <Content>
             
-            <ButtonText to="/" title = "Voltar"/>
+            <ButtonText title = "Voltar" onClick={handleBack}/>
 
             <h1>Novo filme</h1>
 
@@ -101,19 +105,12 @@ export function New() {
               onChange = {e => setNewTag(e.target.value)}
               onClick = {handleAddTag}
               />
-
             </div>
-            
-
-           <CustomButton>
-            <Button title="Excluir filme"/>
-            <Button title="Salvar alterações" onClick = {handleNewNote}/>
-            </CustomButton>
            
-
+            <Button title="Salvar alterações" onClick = {handleNewNote}/>
+      
             </Content>
            
-
         </Container>
     )
 }

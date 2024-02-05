@@ -39,7 +39,14 @@ export const Content = styled.div`
     height: 88px;
     border-radius: 10px;
     background-color: ${({ theme }) => theme.COLORS.BLACK};
-    
+  }
+
+  > button {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 300px;
   }
 
   overflow-y: auto;
@@ -49,16 +56,4 @@ export const CustomTitle = styled.div`
   gap: 40px;
   margin-top: 40px;
   margin-bottom: 40px;
-`;
-
-export const CustomButton = styled.div`
-  display: flex;
-  gap: 40px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-
-  :nth-child(1) {
-    color: ${({ theme }) => theme.COLORS.PINK};
-    background-color: ${({ theme }) => theme.COLORS.BLACK};
-  }
 `;
