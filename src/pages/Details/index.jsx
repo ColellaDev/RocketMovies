@@ -1,12 +1,13 @@
-import { Container, Content, Title, Clock, Text, Section } from "./styles.js"
+import { Container, Content, Title, Clock, Text, Section, CustomButton } from "./styles.js"
 
 import { Header} from "../../components/Header"
 
 import  {ButtonText } from "../../components/ButtonText"
 import {StarRating} from "../../components/StarsRaiting/index.jsx"
 import { Tags } from "../../components/Tags/index.jsx"
+import { Button } from "../../components/Button/index.jsx"
 
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
 import { api } from "../../services/api"
@@ -20,6 +21,7 @@ export function Details() {
   const [data, setData] = useState("")
 
   const params = useParams()
+  const navigate = useNavigate()
   const { user} = useAuth()
 
   const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
@@ -34,6 +36,15 @@ export function Details() {
     fetchNote()
   }, [])
 
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente excluir esse filme?")
+
+    if(confirm){
+      await api.delete(`/movieNotes/${params.id}`)
+      navigate("/")
+    }
+  }
+
   return (
     <Container>
     <Header/>
@@ -42,7 +53,10 @@ export function Details() {
     data && // Se tem data mostra se não não mostra
     <Content>
       
+     <CustomButton>
     <ButtonText to="/" title="Voltar"/>
+    <Button title="Excluir filme" onClick={handleRemove}/>
+    </CustomButton> 
 
     <Title>
     <div>
@@ -76,10 +90,12 @@ export function Details() {
     {data.note.description}  
     </p>
     </Text>
-    
-    </Content>
-    }
 
+    </Content>
+
+
+    }
+  
     </Container>
   )
 }

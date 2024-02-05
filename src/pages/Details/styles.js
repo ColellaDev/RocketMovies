@@ -14,8 +14,9 @@ export const Container = styled.div`
 
 export const Content = styled.div`
  grid-area: content;
- 
-  
+ word-wrap: break-word;
+ width: 100%;
+ width: 100vw;
   max-height: 650px;
   padding: 40px 123px;
   
@@ -23,7 +24,18 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-self: center;
-  
+  `
+  export const CustomButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30px;
+
+   > button {
+    width: 200px;
+    
+    color: ${({ theme }) => theme.COLORS.PINK};
+    background-color: ${({ theme }) => theme.COLORS.BLACK};
+  }
   `
 
   export const Title = styled.div`
