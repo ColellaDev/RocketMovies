@@ -6,51 +6,79 @@ import  {ButtonText } from "../../components/ButtonText"
 import {StarRating} from "../../components/StarsRaiting/index.jsx"
 import { Tags } from "../../components/Tags/index.jsx"
 
+import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
+
+import { api } from "../../services/api"
+
+import { useAuth } from "../../hooks/auth"
+
 
 
 export function Details() {
+
+  const [data, setData] = useState("")
+
+  const params = useParams()
+  const { user} = useAuth()
+
+  const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
+
+
+  useEffect(() => {
+    async  function fetchNote() {
+      const response = await api.get(`/movieNotes/${params.id}`)
+      setData(response.data)
+    }
+
+    fetchNote()
+  }, [])
+
   return (
     <Container>
     <Header/>
 
+{
+    data && // Se tem data mostra se não não mostra
     <Content>
       
     <ButtonText to="/" title="Voltar"/>
 
     <Title>
     <div>
-    <h1>Interestellar</h1>
-    <StarRating rating="4"/>
+    <h1>{data.note.title}</h1>
+    <StarRating rating={data.note.rating}/>
     </div>
 
-    <img src="https://github.com/ColellaDev.png" alt="Foto do usuário"/>
-    <span>Por Marcos Colella</span>
+    <img src={avatarUrl} alt="Foto do usuário"/>
+    <span>{user.name}</span>
     <Clock/>
-    <span>23/05/22 às 08:00</span>
+    <span>{data.note.created_at}</span>
     </Title>
 
+  {
+    data.tags &&
     <Section>
-    <Tags title="Ficção Cientifica" />
-    <Tags title="Drama"/>
-    <Tags title="Familia"/>
+    {
+          data.tags.map(tag => (
+            <Tags 
+            key={String(tag.id)}
+            title={tag.name} 
+            />
+          ))
+          
+        }
     </Section>
+}
 
     <Text>
     <p>
-    Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy.
-    </p>
-    <p>
-    Além de Cooper, a tripulação da Endurance é formada pela bióloga Amelia, filha de Brand; o cientista Romilly, o físico planetário Doyle, além dos robôs TARS e CASE. Eles entram no buraco de minhoca e se dirigem a Miller, porém descobrem que o planeta possui enorme dilatação gravitacional temporal por estar tão perto de Gargântua: cada hora na superfície equivale a sete anos na Terra. Eles entram em Miller e descobrem que é inóspito já que é coberto por um oceano raso e agitado por ondas enormes. Uma onda atinge a tripulação enquanto Amelia tenta recuperar os dados de Miller, matando Doyle e atrasando a partida. Ao voltarem para a Endurance, Cooper e Amelia descobrem que 23 anos se passaram.
-    </p>
-    <p>
-    Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy.
-    </p>
-    <p>
-    Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy.
+    {data.note.description}  
     </p>
     </Text>
     
     </Content>
+    }
 
     </Container>
   )
