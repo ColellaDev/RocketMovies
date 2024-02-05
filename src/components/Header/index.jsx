@@ -4,11 +4,13 @@ import { FiSearch} from 'react-icons/fi'
 import { useAuth } from "../../hooks/auth"
 import {api} from "../../services/api"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Header({ onSearch }) {
 
     const {signOut, user} = useAuth()
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate()
 
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
 
@@ -16,6 +18,11 @@ export function Header({ onSearch }) {
         const value = event.target.value;
         setSearchTerm(value);
         onSearch(value); // Chama a função de pesquisa passada como prop
+      }
+
+      function handleSignOut() {
+        navigate("/")
+        signOut()
       }
 
     return (
@@ -38,7 +45,7 @@ export function Header({ onSearch }) {
                  <img src={avatarUrl} alt="Foto do usuário"/>
                  </Profile>
 
-                <button type="button" onClick={signOut}>sair</button>
+                <button type="button" onClick={handleSignOut}>sair</button>
             </Logout>
         </Container>
     )
