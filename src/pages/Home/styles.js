@@ -17,6 +17,7 @@ export const Container = styled.div`
 export const Content = styled.div`
  grid-area: content;
   
+  width: 100%;
   max-height: 650px;
   padding: 40px 123px;
  
