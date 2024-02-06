@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/auth"
 import {api} from "../../services/api"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
 
 export function Header({ onSearch }) {
 
