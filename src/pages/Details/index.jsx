@@ -9,6 +9,7 @@ import { Button } from "../../components/Button/index.jsx"
 
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
+import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
 
 import { api } from "../../services/api"
 
