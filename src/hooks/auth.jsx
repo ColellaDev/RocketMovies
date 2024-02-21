@@ -2,6 +2,8 @@ import {createContext, useContext, useState, useEffect} from "react"
 
 import { api } from "../services/api" //Importamos o banco
 
+import { toast } from "sonner";
+
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) { // children será no caso as Rotas da aplicação
@@ -52,13 +54,13 @@ function AuthProvider({ children }) { // children será no caso as Rotas da apli
             localStorage.setItem("@rocketnotes:user", JSON.stringify(user))
 
             setData({user, token: data.token})
-            alert("Perfil atualizado!")
+            toast.success("Perfil atualizado!")
 
         } catch (error) {
             if(error.response) {
                 alert(error.response.data.message)
             } else {
-                alert("Não foi possível atualizar.")
+                toast.error("Não foi possível atualizar.")
             }
         }
     }
