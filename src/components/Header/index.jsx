@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/auth"
 import {api} from "../../services/api"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FiveStars } from "../FiveStars";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
 
 export function Header({ onSearch }) {
@@ -29,8 +30,9 @@ export function Header({ onSearch }) {
     return (
         <Container>
 
-            <h1>RocketMovies</h1>
+            <h1>Movie Stars <FiveStars/></h1>
             
+
             <Input  
             placeholder="Pesquisar pelo título" 
             icon={FiSearch}

@@ -18,6 +18,12 @@ padding: 0 123px;
 >h1 {
     color: ${({ theme }) => theme.COLORS.PINK};
     margin-right: 64px;
+    white-space: nowrap;
+   
+    svg {
+      font-size: 25px;
+      margin-left: 10px;
+    }
 }
 `
 

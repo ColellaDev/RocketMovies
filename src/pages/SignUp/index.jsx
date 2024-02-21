@@ -5,6 +5,7 @@ import { ButtonText } from '../../components/ButtonText'
 import { FiMail, FiLock, FiUser} from 'react-icons/fi'
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { FiveStars } from '../../components/FiveStars';
 
 import { api } from "../../services/api"
 
@@ -40,8 +41,9 @@ export function SignUp() {
         <Container>
             
             <Form>
-                <h1>RocketMovies</h1>
-                <p>Aplicação para acompanhar tudo que assistir.</p>
+                <h1>Movie Stars</h1>
+                <FiveStars/>
+                <p>Aplicação para acompanhar e classificar tudo que assistir</p>
 
                 <h2>Crie sua conta</h2>
 
