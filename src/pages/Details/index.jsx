@@ -15,7 +15,7 @@ import { api } from "../../services/api"
 
 import { useAuth } from "../../hooks/auth"
 
-
+import { toast } from "sonner";
 
 export function Details() {
 
@@ -38,13 +38,23 @@ export function Details() {
   }, [])
 
   async function handleRemove() {
-    const confirm = window.confirm("Deseja realmente excluir esse filme?")
-
-    if(confirm){
-      await api.delete(`/movieNotes/${params.id}`)
-      navigate("/")
-    }
-  }
+    toast('Deseja realmente excluir esse filme?', {
+      style: {
+        background: "#3E3B47",
+        color:"white",
+        borderColor:"#FF859B",
+      },
+      
+      action: {
+          label: 'Confirmar',
+          onClick: async () => {
+              await api.delete(`/movieNotes/${params.id}`);
+              toast.success('Nota excluída com sucesso!');
+              navigate('/');
+          }
+      },
+  });
+};
 
   function handleBack() {
     navigate(-1)

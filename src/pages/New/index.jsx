@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom"
 
 import { api } from "../../services/api"
 
+import { toast } from "sonner";
 
 export function New() {
 
@@ -32,13 +33,26 @@ export function New() {
     }
 
     async function handleNewNote(){
-
+     
+      
         if(!title){
-            return alert("Digite um título para sua nota")
+          return  toast.error('Digite um título para sua nota')
           }
+
+          if(!tags){
+            return  toast.error('Digite uma tag para sua nota')
+            }
         
           if(newTag){
-            return alert("Você deixou uma Tag no campo adicionar mas não clicou em adicionar.")
+            return toast.error("Você deixou uma Tag no campo adicionar mas não clicou em adicionar.")
+          }
+
+          if(!rating){
+            return  toast.error('Digite uma nota para o filme')
+          }
+
+          if(isNaN(rating) || rating < 0 || rating > 5){
+            return  toast.error('De uma nota de 0 a 5')
           }
 
         await api.post("/movieNotes", {
@@ -48,7 +62,7 @@ export function New() {
             rating
         })
         
-        alert("Nota criada com sucesso!")
+        toast.success("Nota criada com sucesso!")
         navigate("/")
      }
 
@@ -66,7 +80,7 @@ export function New() {
             <ButtonText title = "Voltar" onClick={handleBack}/>
 
             <h1>Novo filme</h1>
-
+            
             <CustomTitle>
             <Input 
             placeholder="Título" 
