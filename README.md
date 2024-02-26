@@ -1,7 +1,7 @@
 
 # RocketStars
 
-![movies](https://github.com/ColellaDev/RocketMovies/assets/91292125/0c398e78-ba26-45ac-a471-81cd6364b3ce)
+https://github.com/ColellaDev/RocketMovies/assets/91292125/fe95c652-0b25-433a-b35c-13ea98bd0a11
 
 ## Sobre o Projeto
 
