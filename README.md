@@ -1,11 +1,12 @@
 
-# RocketStars
+# MovieStars 🎬✨
 
 https://github.com/ColellaDev/RocketMovies/assets/91292125/fe95c652-0b25-433a-b35c-13ea98bd0a11
 
 ## Sobre o Projeto
 
-O RocketStars é uma aplicação full-stack desenvolvida para criar notas e avaliar os filmes que você assistiu. Durante o desenvolvimento deste projeto, adquiri e aprofundei conhecimentos em diversas áreas, incluindo autenticação, uso de tokens JWT, LocalStorage, implementação de middlewares, upload de imagens, controle de Cors, integração com Axios, e utilização de hooks como useEffect, useState.
+Esta é uma aplicação que desenvolvi com o objetivo de simplificar a avaliação de filmes permitindo que os usuários atribuam de 1 a 5 estrelas e armazenem suas opiniões.
+Durante o desenvolvimento deste projeto, adquiri e aprofundei conhecimentos em diversas áreas, utilização de autenticação, uso de tokens JWT, implementação de middlewares, upload de imagens, controle de Cors, integração com Axios, e utilização de hooks como useEffect e useContext. Além disso, utilizei o Sonner para fornecer notificações instantâneas aos usuários, aprimorando ainda mais a experiência da aplicação.
 
 ## Tecnologias Utilizadas
 
