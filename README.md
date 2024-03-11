@@ -32,8 +32,8 @@ O Rocket Stars está disponível em [https://moviesdevcolella.netlify.app/](http
 
 ## Repositórios
 
-- Front-end: [GitHub - ColellaDev/RocketNotes](https://github.com/ColellaDev/RocketNotes)
-- Back-end: [GitHub - ColellaDev/ApiRocketNotes](https://github.com/ColellaDev/ApiRocketNotes)
+- Front-end: [GitHub - ColellaDev/RocketNotes](https://github.com/ColellaDev/RocketMovies)
+- Back-end: [GitHub - ColellaDev/ApiRocketNotes](https://github.com/ColellaDev/ApiRocketMovies)
 
 ## 🔗 Links
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcos-colella-esteves-952a3866/)
